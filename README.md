@@ -81,9 +81,3 @@ Contributions are what make the open source community such an amazing place to l
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information. (If you have a LICENSE file)
-
-## Contact
-
-Your Name - your_email@example.com
-
-Project Link: [YOUR_REPOSITORY_URL]
