@@ -1,0 +1,143 @@
+.resume-preview-container {
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.a4-size {
+    width: 210mm;
+    /* A4 width */
+    min-height: 297mm;
+    /* A4 height */
+    margin: 0 auto;
+    /* Center the A4 page */
+    padding: 20mm;
+    /* A4 margins */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview-header {
+    text-align: left;
+    /* Left aligned as requested */
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    /* Removed padding-bottom */
+}
+
+.preview-header h1 {
+    margin: 0;
+    color: #007bff;
+    /* Light blue color from sample */
+    font-size: 2em;
+    /* Adjusted font size, slightly smaller */
+}
+
+.preview-header .contact-info {
+    margin: 5px 0;
+    color: #333;
+    /* Black color from sample */
+    font-size: 0.9em;
+    /* Adjusted font size, smaller */
+}
+
+.preview-header .social-links {
+    margin: 5px 0;
+    font-size: 0.8em;
+    /* Adjusted font size, smaller */
+}
+
+.preview-header .social-links a {
+    color: #007bff;
+    /* Blue color for links */
+    text-decoration: none;
+}
+
+.preview-header .social-links a:hover {
+    text-decoration: underline;
+}
+
+.preview-header a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.preview-section {
+    margin-bottom: 20px;
+}
+
+.preview-section h2 {
+    color: #007bff;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.preview-item {
+    margin-bottom: 15px;
+}
+
+.preview-item h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.preview-item .sub-heading {
+    font-style: italic;
+    color: #666;
+    margin: 2px 0;
+    font-size: 0.95em;
+}
+
+.preview-item .dates {
+    color: #777;
+    font-size: 0.85em;
+    margin: 2px 0 5px 0;
+}
+
+.preview-item p {
+    margin: 5px 0;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Print-specific styles for ResumePreview */
+@media print {
+    .resume-preview-container {
+        font-size: 9pt;
+        /* Base font size for print, smaller */
+    }
+
+    .preview-header h1 {
+        font-size: 1.6em;
+        /* Adjust header font size, smaller */
+    }
+
+    .preview-header .contact-info,
+    .preview-header .social-links {
+        font-size: 0.75em;
+        /* Adjust contact/social font size, smaller */
+    }
+
+    .preview-section h2 {
+        font-size: 1.2em;
+        /* Adjust section title font size, smaller */
+    }
+
+    .preview-item h3 {
+        font-size: 0.9em;
+        /* Adjust item title font size, smaller */
+    }
+
+    .preview-item .sub-heading,
+    .preview-item .dates,
+    .preview-item p {
+        font-size: 0.8em;
+        /* Adjust item details font size, smaller */
+    }
+}
