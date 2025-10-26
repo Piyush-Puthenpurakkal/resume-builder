@@ -14,6 +14,22 @@ import "./App.css"; // For general layout and styling
 function App() {
   const resumePreviewRef = useRef();
   const [showPreview, setShowPreview] = useState(false); // State for mobile preview toggle
+  const [expandedSections, setExpandedSections] = useState({
+    personalDetails: true,
+    summary: true,
+    education: true,
+    experience: true,
+    skills: true,
+    projects: true,
+    certifications: true,
+  });
+
+  const toggleSection = (sectionName) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [sectionName]: !prev[sectionName],
+    }));
+  };
 
   const handleDownloadPdf = async () => {
     const element = resumePreviewRef.current;
@@ -126,13 +142,34 @@ function App() {
       {/* Editor Panel */}
       <div className="editor-panel">
         <h1>Resume Builder</h1>
-        <PersonalDetailsForm />
-        <SummaryForm />
-        <EducationForm />
-        <ExperienceForm />
-        <SkillsForm />
-        <ProjectsForm />
-        <CertificationsForm />
+        <PersonalDetailsForm
+          isExpanded={expandedSections.personalDetails}
+          toggleExpand={() => toggleSection("personalDetails")}
+        />
+        <SummaryForm
+          isExpanded={expandedSections.summary}
+          toggleExpand={() => toggleSection("summary")}
+        />
+        <EducationForm
+          isExpanded={expandedSections.education}
+          toggleExpand={() => toggleSection("education")}
+        />
+        <ExperienceForm
+          isExpanded={expandedSections.experience}
+          toggleExpand={() => toggleSection("experience")}
+        />
+        <SkillsForm
+          isExpanded={expandedSections.skills}
+          toggleExpand={() => toggleSection("skills")}
+        />
+        <ProjectsForm
+          isExpanded={expandedSections.projects}
+          toggleExpand={() => toggleSection("projects")}
+        />
+        <CertificationsForm
+          isExpanded={expandedSections.certifications}
+          toggleExpand={() => toggleSection("certifications")}
+        />
         {/* Download button for desktop */}
         <button
           onClick={handleDownloadPdf}

@@ -1,7 +1,8 @@
 import React from "react";
 import { useResume } from "../context/useResume";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import icons
 
-function ExperienceForm() {
+function ExperienceForm({ isExpanded, toggleExpand }) {
   const { resumeData, updateResumeData } = useResume();
 
   const handleAddExperience = () => {
@@ -37,59 +38,68 @@ function ExperienceForm() {
 
   return (
     <div className="form-section card">
-      <h2>Experience</h2>
-      {resumeData.experience.map((exp) => (
-        <div key={exp.id} className="form-item">
-          <input
-            type="text"
-            name="title"
-            placeholder="Job Title"
-            value={exp.title}
-            onChange={(e) => handleChange(exp.id, e)}
-          />
-          <input
-            type="text"
-            name="company"
-            placeholder="Company"
-            value={exp.company}
-            onChange={(e) => handleChange(exp.id, e)}
-          />
-          <input
-            type="text"
-            name="startDate"
-            placeholder="Start Date"
-            value={exp.startDate}
-            onChange={(e) => handleChange(exp.id, e)}
-          />
-          <input
-            type="text"
-            name="endDate"
-            placeholder="End Date"
-            value={exp.endDate}
-            onChange={(e) => handleChange(exp.id, e)}
-          />
-          <textarea
-            name="description"
-            placeholder="Responsibilities and achievements (use bullet points)"
-            value={exp.description}
-            onChange={(e) => handleChange(exp.id, e)}
-          ></textarea>
+      <div className="form-section-header" onClick={toggleExpand}>
+        <h2>Experience</h2>
+        <button type="button" className="expand-toggle-button">
+          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
+        </button>
+      </div>
+      {isExpanded && (
+        <div className="form-section-content">
+          {resumeData.experience.map((exp) => (
+            <div key={exp.id} className="form-item">
+              <input
+                type="text"
+                name="title"
+                placeholder="Job Title"
+                value={exp.title}
+                onChange={(e) => handleChange(exp.id, e)}
+              />
+              <input
+                type="text"
+                name="company"
+                placeholder="Company"
+                value={exp.company}
+                onChange={(e) => handleChange(exp.id, e)}
+              />
+              <input
+                type="text"
+                name="startDate"
+                placeholder="Start Date"
+                value={exp.startDate}
+                onChange={(e) => handleChange(exp.id, e)}
+              />
+              <input
+                type="text"
+                name="endDate"
+                placeholder="End Date"
+                value={exp.endDate}
+                onChange={(e) => handleChange(exp.id, e)}
+              />
+              <textarea
+                name="description"
+                placeholder="Responsibilities and achievements (use bullet points)"
+                value={exp.description}
+                onChange={(e) => handleChange(exp.id, e)}
+              ></textarea>
+              <button
+                type="button"
+                onClick={() => handleRemoveExperience(exp.id)}
+                className="remove-button"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
           <button
             type="button"
-            onClick={() => handleRemoveExperience(exp.id)}
-            className="remove-button"
+            onClick={handleAddExperience}
+            className="add-button"
           >
-            Remove
+            Add Experience
           </button>
         </div>
-      ))}
-      <button
-        type="button"
-        onClick={handleAddExperience}
-        className="add-button"
-      >
-        Add Experience
-      </button>
+      )}
     </div>
   );
 }

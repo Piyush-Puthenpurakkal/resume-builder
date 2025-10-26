@@ -1,7 +1,8 @@
 import React from "react";
 import { useResume } from "../context/useResume";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import icons
 
-function CertificationsForm() {
+function CertificationsForm({ isExpanded, toggleExpand }) {
   const { resumeData, updateResumeData } = useResume();
 
   const handleAddCertification = () => {
@@ -35,46 +36,55 @@ function CertificationsForm() {
 
   return (
     <div className="form-section card">
-      <h2>Certifications</h2>
-      {resumeData.certifications.map((cert) => (
-        <div key={cert.id} className="form-item">
-          <input
-            type="text"
-            name="name"
-            placeholder="Certification Name"
-            value={cert.name}
-            onChange={(e) => handleChange(cert.id, e)}
-          />
-          <input
-            type="text"
-            name="issuingOrganization"
-            placeholder="Issuing Organization"
-            value={cert.issuingOrganization}
-            onChange={(e) => handleChange(cert.id, e)}
-          />
-          <input
-            type="text"
-            name="issueDate"
-            placeholder="Issue Date"
-            value={cert.issueDate}
-            onChange={(e) => handleChange(cert.id, e)}
-          />
+      <div className="form-section-header" onClick={toggleExpand}>
+        <h2>Certifications</h2>
+        <button type="button" className="expand-toggle-button">
+          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
+        </button>
+      </div>
+      {isExpanded && (
+        <div className="form-section-content">
+          {resumeData.certifications.map((cert) => (
+            <div key={cert.id} className="form-item">
+              <input
+                type="text"
+                name="name"
+                placeholder="Certification Name"
+                value={cert.name}
+                onChange={(e) => handleChange(cert.id, e)}
+              />
+              <input
+                type="text"
+                name="issuingOrganization"
+                placeholder="Issuing Organization"
+                value={cert.issuingOrganization}
+                onChange={(e) => handleChange(cert.id, e)}
+              />
+              <input
+                type="text"
+                name="issueDate"
+                placeholder="Issue Date"
+                value={cert.issueDate}
+                onChange={(e) => handleChange(cert.id, e)}
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveCertification(cert.id)}
+                className="remove-button"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
           <button
             type="button"
-            onClick={() => handleRemoveCertification(cert.id)}
-            className="remove-button"
+            onClick={handleAddCertification}
+            className="add-button"
           >
-            Remove
+            Add Certification
           </button>
         </div>
-      ))}
-      <button
-        type="button"
-        onClick={handleAddCertification}
-        className="add-button"
-      >
-        Add Certification
-      </button>
+      )}
     </div>
   );
 }

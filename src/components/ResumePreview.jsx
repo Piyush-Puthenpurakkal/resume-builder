@@ -75,7 +75,11 @@ const ResumePreview = React.forwardRef((props, ref) => {
               <p className="dates">
                 {exp.startDate} - {exp.endDate}
               </p>
-              <p>{exp.description}</p>
+              <ul className="description-list">
+                {exp.description.split("\n").map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </section>
@@ -100,7 +104,22 @@ const ResumePreview = React.forwardRef((props, ref) => {
       {skills.length > 0 && (
         <section className="preview-section">
           <h2>Skills</h2>
-          <p>{skills.map((skill) => skill.name).join(", ")}</p>
+          <div className="skills-grid">
+            {skills.map(
+              (skillCategory) =>
+                skillCategory.items.length > 0 && (
+                  <div
+                    key={skillCategory.id}
+                    className="skill-category-preview"
+                  >
+                    <h3>{skillCategory.name}:</h3>
+                    <p>
+                      {skillCategory.items.map((item) => item.name).join(", ")}
+                    </p>
+                  </div>
+                )
+            )}
+          </div>
         </section>
       )}
 
@@ -121,7 +140,11 @@ const ResumePreview = React.forwardRef((props, ref) => {
                   </a>
                 )}
               </h3>
-              <p>{project.description}</p>
+              <ul className="description-list">
+                {project.description.split("\n").map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </section>
